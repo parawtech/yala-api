@@ -1,0 +1,11 @@
+stateDiagram
+    [*] --> INITIATED
+    INITIATED --> PAID
+    INITIATED --> FAILED
+    INITIATED --> REDIRECTED
+    REDIRECTED --> FAILED
+    REDIRECTED --> VERIFYING
+    VERIFYING --> PAID
+    VERIFYING --> FAILED
+    PAID --> [*]
+    FAILED --> [*]

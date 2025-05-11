@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="JDR-1090_14" author="sina@paraw.top" dbms="postgresql">
+        <createTable tableName="auth_user">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="__cdt" type="timestamp"/>
+            <column name="__udt" type="timestamp"/>
+            <column name="__ver" type="integer"/>
+            <column name="email" type="text"/>
+            <column name="locale" type="text"/>
+            <column name="mobile" type="text"/>
+            <column name="password" type="text"/>
+            <column name="name" type="text"/>
+            <column name="profile" type="jsonb"/>
+        </createTable>
+
+        <addUniqueConstraint tableName="auth_user"
+                             columnNames="email"
+                             constraintName="auth_user_uk_email"/>
+    </changeSet>
+</databaseChangeLog>

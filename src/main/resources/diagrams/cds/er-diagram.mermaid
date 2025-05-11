@@ -1,0 +1,23 @@
+erDiagram
+    cdp_audience {
+        bigint id PK
+        timestamp __cdt
+        timestamp __udt
+        integer __ver
+        bigint tenant
+        text name
+        text description
+        text state
+    }
+
+    cdp_audience_rule {
+        bigint id PK
+        timestamp __cdt
+        timestamp __udt
+        integer __ver
+        bigint audience_id FK
+        text rule_type
+        jsonb logic
+    }
+
+    cdp_audience ||--o{ cdp_audience_rule : "has"

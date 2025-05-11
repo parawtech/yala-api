@@ -1,0 +1,13 @@
+stateDiagram
+    [*] --> INITIATED: Initiate
+    INITIATED --> CANCELED : Cancel
+    INITIATED --> INVALID : Invalidate
+    INITIATED --> ATTEMPTED : Attempt
+    ATTEMPTED --> INVALID : Invalidate
+    ATTEMPTED --> FAILED : Failed
+    FAILED --> CANCELED : Cancel
+    FAILED --> ATTEMPTED : Reattempt
+    ATTEMPTED --> PAID : Paid
+    PAID --> [*]
+    INITIATED --> [*]
+    CANCELED --> [*]

@@ -1,0 +1,1 @@
+org.springframework.test.context.TestExecutionListener=tech.rket.test.testcontainer.TestContainerAnnotationListener, tech.rket.test.environment.TestEnvironmentListener

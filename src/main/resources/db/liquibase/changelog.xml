@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <include file="changeset/20250121_JDR-1061_00_create-table_revinfo_enver.xml"  relativeToChangelogFile="true"/>
+
+    <include file="changeset/20250204_JDR-1090_01_create_table_payment-owner.xml" relativeToChangelogFile="true"/>
+    <include file="changeset/20250204_JDR-1090_02_create_table_payment-transaction.xml" relativeToChangelogFile="true"/>
+    <include file="changeset/20250204_JDR-1090_03_create_table_payment-transaction-aud_enver.xml" relativeToChangelogFile="true"/>
+    <include file="changeset/20250204_JDR-1090_04_create_table_payment-attempt.xml" relativeToChangelogFile="true"/>
+    <include file="changeset/20250204_JDR-1090_05_create_table_payment-attempt-aud_enver.xml" relativeToChangelogFile="true"/>
+    <include file="changeset/20250204_JDR-1090_06_create_table_auth-permission.xml" relativeToChangelogFile="true"/>
+    <include file="changeset/20250204_JDR-1090_07_create_table_auth-tenant.xml" relativeToChangelogFile="true"/>
+    <include file="changeset/20250204_JDR-1090_08_create_table_auth-tenant-role.xml" relativeToChangelogFile="true"/>
+    <include file="changeset/20250204_JDR-1090_09_create_table_auth-tenant-role-permission.xml" relativeToChangelogFile="true"/>
+    <include file="changeset/20250204_JDR-1090_10_create_table_auth-user.xml" relativeToChangelogFile="true"/>
+    <include file="changeset/20250204_JDR-1090_11_create_table_auth-user-invitation.xml" relativeToChangelogFile="true"/>
+    <include file="changeset/20250204_JDR-1090_12_create_table_auth-user-invite.xml" relativeToChangelogFile="true"/>
+    <include file="changeset/20250204_JDR-1090_13_create_table_auth-user-membership.xml" relativeToChangelogFile="true"/>
+    <include file="changeset/20250204_JDR-1090_14_create_table_auth-user-membership-session.xml" relativeToChangelogFile="true"/>
+    <include file="changeset/20250204_JDR-1090_15_create_table_stored-file.xml" relativeToChangelogFile="true"/>
+    <include file="changeset/20250204_JDR-1090_16_add_auth-default-values.xml" relativeToChangelogFile="true"/>
+
+
+    <include file="changeset/20250413_JDR-1208_01_create-table_metrics.xml" relativeToChangelogFile="true"/>
+
+
+    <include file="changeset/20250505_JDR-1301_01_create-table_shedlock.xml" relativeToChangelogFile="true"/>
+</databaseChangeLog>

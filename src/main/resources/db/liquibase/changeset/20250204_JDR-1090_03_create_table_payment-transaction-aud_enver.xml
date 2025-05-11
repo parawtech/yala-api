@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="JDR-1090_05" author="sina@paraw.top" dbms="postgresql">
+        <createTable tableName="payment_transaction_aud">
+            <column name="id" type="numeric(38, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="rev" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="revtype" type="smallint"/>
+            <column name="additional_info" type="jsonb"/>
+            <column name="amount" type="numeric(38, 2)"/>
+            <column name="ipg" type="text"/>
+            <column name="owner_reference" type="text"/>
+            <column name="status" type="text"/>
+            <column name="owner_id" type="numeric(38, 0)"/>
+        </createTable>
+        <addPrimaryKey tableName="payment_transaction_aud"
+                       columnNames="rev, id"
+                       constraintName="payment_transaction_aud_pk"/>
+        <addForeignKeyConstraint
+                baseTableName="payment_transaction_aud"
+                baseColumnNames="rev"
+                constraintName="payment_transaction_aud_fk_rev"
+                referencedTableName="revinfo"
+                referencedColumnNames="rev"/>
+    </changeSet>
+</databaseChangeLog>

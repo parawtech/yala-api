@@ -1,0 +1,15 @@
+stateDiagram-v2
+    [*] --> INCUBATING
+    INCUBATING --> MARK_FOR_CALCULATION: Queue Calculation
+    MARK_FOR_CALCULATION --> CALCULATING: Start Calculation
+    MARK_FOR_CALCULATION --> STABLE: Nothing to run
+    MARK_FOR_CALCULATION --> STOPPED: Stop command
+    CALCULATING --> STABLE: Success
+    CALCULATING --> STOPPED: Error/Stop
+    STOPPED --> MARK_FOR_CALCULATION: Queue Calculation
+    STABLE --> INCUBATING: Rule Change
+    STOPPED --> INCUBATING: Rule Change
+    INCUBATING --> DISABLED: Disabled
+    STABLE --> DISABLED: Disabled
+    STOPPED --> DISABLED: Disabled
+    DISABLED --> INCUBATING: Enable

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="JDR-1090_16" author="sina@paraw.top" dbms="postgresql">
+        <createTable tableName="auth_user_invite">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="__cdt" type="timestamp"/>
+            <column name="__udt" type="timestamp"/>
+            <column name="__ver" type="integer"/>
+            <column name="expired_at" type="timestamp"/>
+            <column name="status" type="text"/>
+            <column name="inviter_id" type="bigint"/>
+            <column name="role_id" type="bigint"/>
+            <column name="user_id" type="bigint"/>
+        </createTable>
+        <addForeignKeyConstraint
+                baseTableName="auth_user_invite"
+                baseColumnNames="user_id"
+                constraintName="auth_user_invite_fk_user_id"
+                referencedTableName="auth_user"
+                referencedColumnNames="id"/>
+        <addForeignKeyConstraint
+                baseTableName="auth_user_invite"
+                baseColumnNames="inviter_id"
+                constraintName="auth_user_invite_fk_inviter_id"
+                referencedTableName="auth_user"
+                referencedColumnNames="id"/>
+        <addForeignKeyConstraint
+                baseTableName="auth_user_invite"
+                baseColumnNames="role_id"
+                constraintName="auth_user_invite_fk_role_id"
+                referencedTableName="auth_tenant_role"
+                referencedColumnNames="id"/>
+        <createIndex indexName="auth_user_invite_idx_role_id" tableName="auth_user_invite">
+            <column name="user_id"/>
+            <column name="role_id"/>
+        </createIndex>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="JDR-1092_08" author="sina@paraw.top" dbms="postgresql">
+        <createTable tableName="payment_attempt">
+            <column name="id" type="numeric(38, 0)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="_created_date" type="timestamp"/>
+            <column name="_updated_date" type="timestamp"/>
+            <column name="_version" type="integer"/>
+            <column name="additional_info" type="jsonb"/>
+            <column name="description" type="text"/>
+            <column name="notify_status" type="text"/>
+            <column name="reference" type="bigint"/>
+            <column name="status" type="text"/>
+            <column name="transaction_id" type="numeric(38, 0)"/>
+        </createTable>
+        <addUniqueConstraint tableName="payment_attempt"
+                             columnNames="transaction_id, reference"
+                             constraintName="pay_attempts_owner_reference_owner_id"/>
+        <addForeignKeyConstraint baseTableName="payment_attempt"
+                                 baseColumnNames="transaction_id"
+                                 referencedTableName="payment_transaction"
+                                 referencedColumnNames="id"
+                                 constraintName="payment_attempt_fk_transaction_id"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,33 @@
+package tech.rket.payment.domain.shared;
+
+public enum IPG {
+    //    RAHYAB,
+//    BIT_PAY,
+//    P_STAR,
+//    IRAN_PAY_MAX,
+//    SUN_PAL,
+//    GOYA_PAY,
+//    GARDESH_PAY,
+//    SAADEH,
+//    ZARIN_PAL,
+//    ZIBAL,
+//    JIBIT,
+//    B_CHOON,
+//    NOVINO_PAY,
+//    PANA_PAL,
+//    HOOR_PAY,
+//    PARS_PAL,
+//    SABA_PAY,
+//    INO_PAL,
+//    AP,
+//    DAMAVAND,
+//    MELLAT,
+    SADAD,
+//    SEP,
+//    PASARGAD,
+//    PARSIAN,
+//    OMID,
+//    SEPEHR,
+//    FANAVA,
+//    IRAN_KISH
+}

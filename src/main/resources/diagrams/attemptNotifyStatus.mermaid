@@ -1,0 +1,8 @@
+stateDiagram
+    [*] --> CURRENTLY_NO_NEED_TO_NOTIFY: Initiate
+    CURRENTLY_NO_NEED_TO_NOTIFY --> NOT_NOTIFIABLE : Not notifiable due no webhook set
+    CURRENTLY_NO_NEED_TO_NOTIFY --> NOTIFYING : Notifying
+    NOTIFYING --> NOTIFIED : Notified and webhook response correctly
+    NOTIFYING --> NOTIFYING : retry for notify
+    NOT_NOTIFIABLE --> [*]
+    NOTIFIED --> [*]

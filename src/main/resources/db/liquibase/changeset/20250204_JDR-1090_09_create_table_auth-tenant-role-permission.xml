@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="JDR-1090_13" author="sina@paraw.top" dbms="postgresql">
+        <createTable tableName="auth_tenant_role_permission">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="__cdt" type="timestamp"/>
+            <column name="__udt" type="timestamp"/>
+            <column name="__ver" type="integer"/>
+            <column name="permission_id" type="text"/>
+            <column name="role_id" type="bigint"/>
+        </createTable>
+
+        <addUniqueConstraint tableName="auth_tenant_role_permission"
+                             columnNames="role_id, permission_id"
+                             constraintName="auth_tenant_role_permission_uk_role_permission"/>
+
+        <addForeignKeyConstraint baseTableName="auth_tenant_role_permission"
+                                 baseColumnNames="permission_id"
+                                 referencedTableName="auth_permission"
+                                 referencedColumnNames="id"
+                                 constraintName="auth_tenant_role_permission_fk_permission_id"/>
+
+        <addForeignKeyConstraint baseTableName="auth_tenant_role_permission"
+                                 baseColumnNames="role_id"
+                                 referencedTableName="auth_tenant_role"
+                                 referencedColumnNames="id"
+                                 constraintName="auth_tenant_role_permission_fk_role_id"/>
+    </changeSet>
+</databaseChangeLog>

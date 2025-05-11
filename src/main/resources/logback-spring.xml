@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <statusListener class="ch.qos.logback.core.status.NopStatusListener" />
+    <springProperty scope="context" name="serviceName" source="spring.application.name" />
+
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+
+    <appender name="CUSTOM_FIELD_ECS_JSON_CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="tech.rket.shared.infrastructure.apm.CustomFieldEcsEncoder">
+            <serviceName>${serviceName}</serviceName>
+        </encoder>
+    </appender>
+
+    <springProfile name="local">
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+        <logger name="tech.rket" level="DEBUG"/>
+    </springProfile>
+
+    <springProfile name="test">
+        <root level="ERROR">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="deployment">
+        <root level="WARN">
+            <appender-ref ref="CUSTOM_FIELD_ECS_JSON_CONSOLE"/>
+        </root>
+
+        <logger name="tech.rket" level="INFO"/>
+    </springProfile>
+</configuration>

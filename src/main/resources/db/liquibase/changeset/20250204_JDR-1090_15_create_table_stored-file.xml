@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="JDR-1090_22" author="sina@paraw.top" dbms="postgresql">
+        <createTable tableName="storage_file">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="__cdt" type="timestamp"/>
+            <column name="__udt" type="timestamp"/>
+            <column name="__ver" type="integer"/>
+            <column name="auth" type="text"/>
+            <column name="auth_values" type="text"/>
+            <column name="characteristic" type="text"/>
+            <column name="file_key" type="text"/>
+            <column name="file_size" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="mime_type" type="text"/>
+            <column name="tenant" type="bigint"/>
+            <column name="user_id" type="bigint"/>
+            <column name="status" type="text"/>
+            <column name="metadata_list" type="jsonb"/>
+            <column name="variant_key_name" type="text"/>
+            <column name="parent_id" type="bigint"/>
+        </createTable>
+        <addUniqueConstraint tableName="storage_file" columnNames="characteristic, file_key"
+                             constraintName="storage_file_uk_tenant_char_key"/>
+        <addForeignKeyConstraint baseTableName="storage_file" baseColumnNames="parent_id"
+                                 referencedTableName="storage_file" referencedColumnNames="id"
+                                 constraintName="storage_file_fk_parent_id"/>
+    </changeSet>
+
+</databaseChangeLog>

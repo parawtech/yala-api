@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="JDR-1090_23" author="sina@paraw.top">
+        <insert tableName="auth_tenant_role">
+            <column name="id" value="1"/>
+            <column name="__cdt" valueComputed="NOW()"/>
+            <column name="__udt" valueComputed="NOW()"/>
+            <column name="__ver" value="0"/>
+            <column name="description" value="Owner"/>
+            <column name="identifier" value="owner"/>
+            <column name="name" value="Owner"/>
+            <column name="tenant_id" value="NULL"/>
+        </insert>
+
+        <insert tableName="auth_tenant_role">
+            <column name="id" value="2"/>
+            <column name="__cdt" valueComputed="NOW()"/>
+            <column name="__udt" valueComputed="NOW()"/>
+            <column name="__ver" value="0"/>
+            <column name="description" value="Member"/>
+            <column name="identifier" value="member"/>
+            <column name="name" value="Member"/>
+            <column name="tenant_id" value="NULL"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<body style="display: none">
+<form action="#" th:action="${url}" th:method="post" id="dataForm">
+    <div th:each="entry : ${form.entrySet()}">
+        <input type="text" th:id="${entry.key}" th:name="${entry.key}" th:value="${entry.value}"/>
+    </div>
+    <button type="submit"></button>
+</form>
+<script>
+    window.onload = function () {
+        document.getElementById("dataForm").submit();
+    };
+</script>
+</body>
+</html>

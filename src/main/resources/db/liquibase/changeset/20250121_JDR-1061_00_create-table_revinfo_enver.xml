@@ -1,0 +1,17 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet id="JDR-1061_00" author="sina@paraw.top"
+               dbms="postgresql">
+        <createTable tableName="revinfo">
+            <column name="rev" type="integer">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="revtstmp" type="bigint"/>
+        </createTable>
+        <createSequence sequenceName="revinfo_seq" incrementBy="50" startValue="1"/>
+
+    </changeSet>
+</databaseChangeLog>
