@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:17
+    container_name: paraw_yala_postgres_db
+    restart: "no"
+    environment:
+      POSTGRES_USER: paraw_yala
+      POSTGRES_PASSWORD: paraw_yala
+      POSTGRES_DB: paraw_yala
+      POSTGRESQL_MAX_CONNECTIONS: 100
+    ports:
+      - "15432:5432"
+    volumes:
+      - paraw_yala_postgres_data:/var/lib/postgresql/data
+      - ./docker/data/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - paraw_yala_network
+
+  minio:
+    image: minio/minio:RELEASE.2024-12-18T13-15-44Z
+    container_name: paraw_yala_minio_server
+    restart: "no"
+    environment:
+      MINIO_ROOT_USER: adminaccess
+      MINIO_ROOT_PASSWORD: adminsecret
+    ports:
+      - "19000:9000"
+      - "19001:9001"
+    command: server /data --console-address ":19001"
+    volumes:
+      - paraw_yala_minio_data:/data
+    networks:
+      - paraw_yala_network
+
+  redis:
+    image: redis:8.0-M03-bookworm
+    container_name: paraw_yala_redis_cache
+    restart: "no"
+    ports:
+      - "16379:6379"
+    volumes:
+      - paraw_yala_redis_data:/data
+    networks:
+      - paraw_yala_network
+
+networks:
+  paraw_yala_network:
+    driver: bridge
+    name: paraw_yala_network
+
+volumes:
+  paraw_yala_postgres_data:
+  paraw_yala_minio_data:
+  paraw_yala_redis_data:
+
